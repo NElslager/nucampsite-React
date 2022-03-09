@@ -45,13 +45,15 @@ class CampsiteInfoComponent extends Component {
 
   render() {
     if (this.props.campsite) {
-      console.log(this.props.campsite.comments);
-      console.log(this.props.campsite.comments[0]);
-      console.log(this.props.campsite.comments[0].author);
+      //console.log(this.props.campsite.comments);
+      //console.log(this.props.campsite.comments[0]);
+      //console.log(this.props.campsite.comments[0].author);
       return (
-        <div className="row">
-          {this.renderCampsite(this.props.campsite)}
-          {this.renderComments(this.props.campsite.comments)}
+        <div className="container">
+          <div className="row">
+            {this.renderCampsite(this.props.campsite)}
+            {this.renderComments(this.props.campsite.comments)}
+          </div>
         </div>
       );
     } else {
