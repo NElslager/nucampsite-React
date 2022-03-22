@@ -29,7 +29,13 @@ class CommentForm extends React.Component {
     this.setState({ isModalOpen: !this.state.isModalOpen });
   };
   handleSubmit = (values) => {
-    alert(JSON.stringify(values));
+    this.toggleModal();
+    this.props.addComment(
+      this.props.campsiteId,
+      values.rating,
+      values.author,
+      values.text
+    );
   };
   render() {
     return (
@@ -114,7 +120,7 @@ function RenderCampsite({ campsite }) {
   );
 }
 
-function RenderComments({ comments }) {
+function RenderComments({ comments, addComment, campsiteId }) {
   if (comments) {
     return (
       <div className="col-md-5 m-1">
@@ -134,7 +140,7 @@ function RenderComments({ comments }) {
             </div>
           );
         })}
-        <CommentForm />
+        <CommentForm campsiteId={campsiteId} addComment={addComment} />
       </div>
     );
   } else {
@@ -163,7 +169,11 @@ function CampsiteInfoComponent(props) {
         </div>
         <div className="row">
           <RenderCampsite campsite={props.campsite} />
-          <RenderComments comments={props.comments} />
+          <RenderComments
+            comments={props.comments}
+            addComment={props.addComment}
+            ccampsiteId={props.campsite.id}
+          />
         </div>
       </div>
     );
